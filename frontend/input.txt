@@ -1,0 +1,22 @@
+func main (a, b)
+{
+    var x = 10;
+
+    while (x < 20)
+    {
+        x = x + 3;
+    }
+
+    var c = b - 1;
+
+    call a(c, a + 2, sin(x));
+
+    return c;
+}
+
+func a (c, d, e)
+{
+    var a = 3;
+
+    return 1;
+}
