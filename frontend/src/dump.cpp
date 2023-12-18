@@ -1,9 +1,12 @@
 #include "dump.h"
+#include "dsl.h"
 
 static void GraphNodeDump   (FILE* file, Node* node);
 static void DrawConnections (FILE* file, Node* node);
 
 #define _print(...) fprintf (file, __VA_ARGS__)
+
+const int NIL_LENGTH = 3;
 
 void GraphDump (Node* node)
 {
@@ -26,7 +29,7 @@ void GraphDump (Node* node)
     fclose (file);
 
     char dot_command[150] = "";
-    sprintf (dot_command, "dot -Tpng %s -o %s", OUTPUT_DOT, OUTPUT_TREE);
+    sprintf (dot_command, "dot -Tpng %s -o %s", OUTPUT_DOT, OUTPUT_PNG);
     system (dot_command);
 }
 
@@ -34,7 +37,7 @@ static void GraphNodeDump (FILE* file, Node* node)
 {
     if (node == nullptr) return;
 
-    if (node->type == VAR_T)
+    if (node->type == VAR_T || node->type == FUNC_NAME)
     {
         _print ("Node%p[shape=rectangle, width=0.2, style=\"filled\","
                 "fillcolor=\"lightblue\", label=\"%s\"] \n \n",
@@ -62,7 +65,7 @@ static void GraphNodeDump (FILE* file, Node* node)
         default:
             _print ("Node%p[shape=rectangle, width=0.2, style=\"filled\","
                     "fillcolor=\"yellow\", label=\"%s\"] \n \n",
-                    node, OperationsArray[node->value.op]);
+                    node, LanguageSyntax[node->value.op]);
         }
     }
     else if (node->type == NUM_T)
@@ -90,4 +93,57 @@ static void DrawConnections (FILE* file, Node* node)
         _print ("Node%p->Node%p\n", node, node->right);
         DrawConnections (file, node->right);
     }
+}
+
+static void DumpNode (Node* node, FILE* file);
+
+void ASTDump (Node* main_node)
+{
+    assert (main_node);
+
+    FILE* file = fopen (OUTPUT_AST, "w");
+    assert (file);
+
+    DumpNode (main_node, file);
+
+    _print ("\n");
+    fclose (file);
+}
+
+void DumpNode (Node* node, FILE* file)
+{
+    assert (file);
+
+    if (!node)
+    {
+        _print ("{ NIL }");
+        return;
+    }
+
+    _print ("{");
+
+    switch (node->type)
+    {
+        case OP_T:
+            _print (" %s ", OperationsArray[node->value.op]);
+            break;
+
+        case NUM_T:
+            _print (" %lg ", node->value.num);
+            break;
+
+        case FUNC_NAME:
+        case VAR_T:
+            _print (" %s ", node->value.var);
+            break;
+
+        default:
+            NO_PROPER_CASE_FOUND;
+            break;
+    }
+
+    DumpNode (node->left,  file);
+    DumpNode (node->right, file);
+
+    _print ("}");
 }

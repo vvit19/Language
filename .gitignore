@@ -1,3 +1,6 @@
 frontend/obj
-frontend/lang
+frontend/front
 .vscode
+backend/back
+backend/obj
+common/obj

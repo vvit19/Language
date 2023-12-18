@@ -1,22 +1,20 @@
-func main (a, b)
+func main ()
 {
-    var x = 10;
+    var n = 0;
+    in (n);
 
-    while (x < 20)
-    {
-        x = x + 3;
-    }
-
-    var c = b - 1;
-
-    call a(c, a + 2, sin(x));
-
-    return c;
+    var res = call factorial (n);
+    out (res);
 }
 
-func a (c, d, e)
+func factorial (n)
 {
-    var a = 3;
+    if (n == 1)
+    {
+        return 1;
+    }
 
-    return 1;
+    var res = call factorial (n - 1);
+
+    return res * n;
 }

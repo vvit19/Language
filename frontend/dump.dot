@@ -2,195 +2,165 @@
             digraph g {
             rankdir   =  TB;
             graph[ranksep = 1.3, nodesep = 0.5, style = "rounded, filled"]
-            Node0x604000000fd0[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label=";"] 
- 
-Node0x604000000b10[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="func"] 
- 
-Node0x604000000010[shape=rectangle, width=0.2, style="filled",fillcolor="lightblue", label="main"] 
- 
-Node0x604000000110[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="param"] 
- 
-Node0x604000000050[shape=rectangle, width=0.2, style="filled",fillcolor="lightblue", label="a"] 
- 
-Node0x6040000000d0[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="param"] 
- 
-Node0x604000000090[shape=rectangle, width=0.2, style="filled",fillcolor="lightblue", label="b"] 
- 
-Node0x604000000ad0[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label=";"] 
- 
-Node0x604000000210[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="var"] 
- 
-Node0x604000000150[shape=rectangle, width=0.2, style="filled",fillcolor="lightblue", label="x"] 
- 
-Node0x6040000001d0[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="="] 
- 
-Node0x604000000190[shape=rectangle, width=0.2, style="filled",fillcolor="orange", label="10.000000"] 
- 
-Node0x604000000a90[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label=";"] 
- 
-Node0x604000000490[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="while"] 
- 
-Node0x604000000450[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label=";"] 
- 
-Node0x604000000410[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="="] 
- 
-Node0x604000000310[shape=rectangle, width=0.2, style="filled",fillcolor="lightblue", label="x"] 
- 
-Node0x6040000003d0[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="+"] 
- 
-Node0x604000000350[shape=rectangle, width=0.2, style="filled",fillcolor="lightblue", label="x"] 
- 
-Node0x604000000390[shape=rectangle, width=0.2, style="filled",fillcolor="orange", label="3.000000"] 
- 
-Node0x6040000002d0[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="<"] 
- 
-Node0x604000000250[shape=rectangle, width=0.2, style="filled",fillcolor="lightblue", label="x"] 
- 
-Node0x604000000290[shape=rectangle, width=0.2, style="filled",fillcolor="orange", label="20.000000"] 
- 
-Node0x604000000a50[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label=";"] 
- 
-Node0x604000000610[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="var"] 
- 
-Node0x6040000004d0[shape=rectangle, width=0.2, style="filled",fillcolor="lightblue", label="c"] 
- 
-Node0x6040000005d0[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="="] 
- 
-Node0x604000000590[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="-"] 
- 
-Node0x604000000510[shape=rectangle, width=0.2, style="filled",fillcolor="lightblue", label="b"] 
- 
-Node0x604000000550[shape=rectangle, width=0.2, style="filled",fillcolor="orange", label="1.000000"] 
- 
-Node0x604000000a10[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label=";"] 
- 
-Node0x6040000008d0[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="call"] 
- 
-Node0x604000000650[shape=rectangle, width=0.2, style="filled",fillcolor="lightblue", label="a"] 
- 
-Node0x604000000890[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="param"] 
- 
-Node0x604000000690[shape=rectangle, width=0.2, style="filled",fillcolor="lightblue", label="c"] 
- 
-Node0x604000000850[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="param"] 
- 
-Node0x604000000750[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="+"] 
- 
-Node0x6040000006d0[shape=rectangle, width=0.2, style="filled",fillcolor="lightblue", label="a"] 
- 
-Node0x604000000710[shape=rectangle, width=0.2, style="filled",fillcolor="orange", label="2.000000"] 
- 
-Node0x604000000810[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="param"] 
- 
-Node0x6040000007d0[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="sin"] 
- 
-Node0x604000000790[shape=rectangle, width=0.2, style="filled",fillcolor="lightblue", label="x"] 
- 
-Node0x6040000009d0[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label=";"] 
- 
-Node0x604000000990[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="return"] 
- 
-Node0x604000000950[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="param"] 
- 
-Node0x604000000910[shape=rectangle, width=0.2, style="filled",fillcolor="lightblue", label="c"] 
- 
-Node0x604000000f90[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label=";"] 
- 
-Node0x604000000f50[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="func"] 
- 
-Node0x604000000b50[shape=rectangle, width=0.2, style="filled",fillcolor="lightblue", label="a"] 
- 
-Node0x604000000cd0[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="param"] 
- 
-Node0x604000000b90[shape=rectangle, width=0.2, style="filled",fillcolor="lightblue", label="c"] 
- 
-Node0x604000000c90[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="param"] 
- 
-Node0x604000000bd0[shape=rectangle, width=0.2, style="filled",fillcolor="lightblue", label="d"] 
- 
-Node0x604000000c50[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="param"] 
- 
-Node0x604000000c10[shape=rectangle, width=0.2, style="filled",fillcolor="lightblue", label="e"] 
- 
-Node0x604000000f10[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label=";"] 
- 
-Node0x604000000dd0[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="var"] 
- 
-Node0x604000000d10[shape=rectangle, width=0.2, style="filled",fillcolor="lightblue", label="a"] 
- 
-Node0x604000000d90[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="="] 
- 
-Node0x604000000d50[shape=rectangle, width=0.2, style="filled",fillcolor="orange", label="3.000000"] 
- 
-Node0x604000000ed0[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label=";"] 
- 
-Node0x604000000e90[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="return"] 
- 
-Node0x604000000e50[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="param"] 
- 
-Node0x604000000e10[shape=rectangle, width=0.2, style="filled",fillcolor="orange", label="1.000000"] 
- 
-Node0x604000000fd0->Node0x604000000b10
-Node0x604000000b10->Node0x604000000010
-Node0x604000000010->Node0x604000000110
+            Node0x604000000d50[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label=";"]
+
+Node0x604000000590[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="func"]
+
+Node0x604000000010[shape=rectangle, width=0.2, style="filled",fillcolor="lightblue", label="main"]
+
+Node0x604000000550[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label=";"]
+
+Node0x604000000110[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="var"]
+
+Node0x604000000050[shape=rectangle, width=0.2, style="filled",fillcolor="lightblue", label="n"]
+
+Node0x6040000000d0[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="="]
+
+Node0x604000000090[shape=rectangle, width=0.2, style="filled",fillcolor="orange", label="0.000000"]
+
+Node0x604000000510[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label=";"]
+
+Node0x6040000001d0[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="in"]
+
+Node0x604000000190[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="param"]
+
+Node0x604000000150[shape=rectangle, width=0.2, style="filled",fillcolor="lightblue", label="n"]
+
+Node0x6040000004d0[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label=";"]
+
+Node0x604000000390[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="var"]
+
+Node0x604000000210[shape=rectangle, width=0.2, style="filled",fillcolor="lightblue", label="res"]
+
+Node0x604000000350[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="="]
+
+Node0x604000000310[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="call"]
+
+Node0x604000000250[shape=rectangle, width=0.2, style="filled",fillcolor="lightblue", label="factorial"]
+
+Node0x6040000002d0[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="param"]
+
+Node0x604000000290[shape=rectangle, width=0.2, style="filled",fillcolor="lightblue", label="n"]
+
+Node0x604000000490[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label=";"]
+
+Node0x604000000450[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="out"]
+
+Node0x604000000410[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="param"]
+
+Node0x6040000003d0[shape=rectangle, width=0.2, style="filled",fillcolor="lightblue", label="res"]
+
+Node0x604000000d10[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label=";"]
+
+Node0x604000000cd0[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="func"]
+
+Node0x6040000005d0[shape=rectangle, width=0.2, style="filled",fillcolor="lightblue", label="factorial"]
+
+Node0x604000000650[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="param"]
+
+Node0x604000000610[shape=rectangle, width=0.2, style="filled",fillcolor="lightblue", label="n"]
+
+Node0x604000000c90[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label=";"]
+
+Node0x604000000690[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="if"]
+
+Node0x604000000750[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="=="]
+
+Node0x6040000006d0[shape=rectangle, width=0.2, style="filled",fillcolor="lightblue", label="n"]
+
+Node0x604000000710[shape=rectangle, width=0.2, style="filled",fillcolor="orange", label="1.000000"]
+
+Node0x604000000850[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label=";"]
+
+Node0x604000000810[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="return"]
+
+Node0x6040000007d0[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="param"]
+
+Node0x604000000790[shape=rectangle, width=0.2, style="filled",fillcolor="orange", label="1.000000"]
+
+Node0x604000000c50[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label=";"]
+
+Node0x604000000a90[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="var"]
+
+Node0x604000000890[shape=rectangle, width=0.2, style="filled",fillcolor="lightblue", label="res"]
+
+Node0x604000000a50[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="="]
+
+Node0x604000000a10[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="call"]
+
+Node0x6040000008d0[shape=rectangle, width=0.2, style="filled",fillcolor="lightblue", label="factorial"]
+
+Node0x6040000009d0[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="param"]
+
+Node0x604000000990[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="-"]
+
+Node0x604000000910[shape=rectangle, width=0.2, style="filled",fillcolor="lightblue", label="n"]
+
+Node0x604000000950[shape=rectangle, width=0.2, style="filled",fillcolor="orange", label="1.000000"]
+
+Node0x604000000c10[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label=";"]
+
+Node0x604000000bd0[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="return"]
+
+Node0x604000000b90[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="param"]
+
+Node0x604000000b50[shape=rectangle, width=0.2, style="filled",fillcolor="yellow", label="*"]
+
+Node0x604000000ad0[shape=rectangle, width=0.2, style="filled",fillcolor="lightblue", label="res"]
+
+Node0x604000000b10[shape=rectangle, width=0.2, style="filled",fillcolor="lightblue", label="n"]
+
+Node0x604000000d50->Node0x604000000590
+Node0x604000000590->Node0x604000000010
+Node0x604000000590->Node0x604000000550
+Node0x604000000550->Node0x604000000110
 Node0x604000000110->Node0x604000000050
 Node0x604000000110->Node0x6040000000d0
 Node0x6040000000d0->Node0x604000000090
-Node0x604000000b10->Node0x604000000ad0
-Node0x604000000ad0->Node0x604000000210
-Node0x604000000210->Node0x604000000150
-Node0x604000000210->Node0x6040000001d0
+Node0x604000000550->Node0x604000000510
+Node0x604000000510->Node0x6040000001d0
 Node0x6040000001d0->Node0x604000000190
-Node0x604000000ad0->Node0x604000000a90
-Node0x604000000a90->Node0x604000000490
+Node0x604000000190->Node0x604000000150
+Node0x604000000510->Node0x6040000004d0
+Node0x6040000004d0->Node0x604000000390
+Node0x604000000390->Node0x604000000210
+Node0x604000000390->Node0x604000000350
+Node0x604000000350->Node0x604000000310
+Node0x604000000310->Node0x604000000250
+Node0x604000000310->Node0x6040000002d0
+Node0x6040000002d0->Node0x604000000290
+Node0x6040000004d0->Node0x604000000490
 Node0x604000000490->Node0x604000000450
 Node0x604000000450->Node0x604000000410
-Node0x604000000410->Node0x604000000310
 Node0x604000000410->Node0x6040000003d0
-Node0x6040000003d0->Node0x604000000350
-Node0x6040000003d0->Node0x604000000390
-Node0x604000000490->Node0x6040000002d0
-Node0x6040000002d0->Node0x604000000250
-Node0x6040000002d0->Node0x604000000290
-Node0x604000000a90->Node0x604000000a50
-Node0x604000000a50->Node0x604000000610
-Node0x604000000610->Node0x6040000004d0
-Node0x604000000610->Node0x6040000005d0
-Node0x6040000005d0->Node0x604000000590
-Node0x604000000590->Node0x604000000510
-Node0x604000000590->Node0x604000000550
-Node0x604000000a50->Node0x604000000a10
-Node0x604000000a10->Node0x6040000008d0
-Node0x6040000008d0->Node0x604000000650
-Node0x6040000008d0->Node0x604000000890
-Node0x604000000890->Node0x604000000690
-Node0x604000000890->Node0x604000000850
-Node0x604000000850->Node0x604000000750
+Node0x604000000d50->Node0x604000000d10
+Node0x604000000d10->Node0x604000000cd0
+Node0x604000000cd0->Node0x6040000005d0
+Node0x6040000005d0->Node0x604000000650
+Node0x604000000650->Node0x604000000610
+Node0x604000000cd0->Node0x604000000c90
+Node0x604000000c90->Node0x604000000690
+Node0x604000000690->Node0x604000000750
 Node0x604000000750->Node0x6040000006d0
 Node0x604000000750->Node0x604000000710
+Node0x604000000690->Node0x604000000850
 Node0x604000000850->Node0x604000000810
 Node0x604000000810->Node0x6040000007d0
 Node0x6040000007d0->Node0x604000000790
+Node0x604000000c90->Node0x604000000c50
+Node0x604000000c50->Node0x604000000a90
+Node0x604000000a90->Node0x604000000890
+Node0x604000000a90->Node0x604000000a50
+Node0x604000000a50->Node0x604000000a10
+Node0x604000000a10->Node0x6040000008d0
 Node0x604000000a10->Node0x6040000009d0
 Node0x6040000009d0->Node0x604000000990
+Node0x604000000990->Node0x604000000910
 Node0x604000000990->Node0x604000000950
-Node0x604000000950->Node0x604000000910
-Node0x604000000fd0->Node0x604000000f90
-Node0x604000000f90->Node0x604000000f50
-Node0x604000000f50->Node0x604000000b50
-Node0x604000000b50->Node0x604000000cd0
-Node0x604000000cd0->Node0x604000000b90
-Node0x604000000cd0->Node0x604000000c90
-Node0x604000000c90->Node0x604000000bd0
-Node0x604000000c90->Node0x604000000c50
 Node0x604000000c50->Node0x604000000c10
-Node0x604000000f50->Node0x604000000f10
-Node0x604000000f10->Node0x604000000dd0
-Node0x604000000dd0->Node0x604000000d10
-Node0x604000000dd0->Node0x604000000d90
-Node0x604000000d90->Node0x604000000d50
-Node0x604000000f10->Node0x604000000ed0
-Node0x604000000ed0->Node0x604000000e90
-Node0x604000000e90->Node0x604000000e50
-Node0x604000000e50->Node0x604000000e10
+Node0x604000000c10->Node0x604000000bd0
+Node0x604000000bd0->Node0x604000000b90
+Node0x604000000b90->Node0x604000000b50
+Node0x604000000b50->Node0x604000000ad0
+Node0x604000000b50->Node0x604000000b10
 }
