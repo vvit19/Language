@@ -23,7 +23,6 @@ static Node* GetArgs        (Token* tokens, int* cur_token, ExitCodes* exit_code
 static Node* GetExpression  (Token* tokens, int* cur_token, ExitCodes* exit_code); // =, ==, >, <, ...
 static Node* GetAddSub      (Token* tokens, int* cur_token, ExitCodes* exit_code); // +-
 static Node* GetMult        (Token* tokens, int* cur_token, ExitCodes* exit_code); // */
-static Node* GetPower       (Token* tokens, int* cur_token, ExitCodes* exit_code); // ^
 static Node* GetUnary       (Token* tokens, int* cur_token, ExitCodes* exit_code); // unary: sin, cos, ln
 static Node* GetBrackets    (Token* tokens, int* cur_token, ExitCodes* exit_code); // ()
 static Node* GetVariable    (Token* tokens, int* cur_token, ExitCodes* exit_code); // variables
@@ -165,7 +164,8 @@ static Node* GetIfElse (Token* tokens, int* cur_token, ExitCodes* exit_code)
             Node* else_body = GetActions (TOKENS_DATA);
             SYNT_ASSERT (exit_code, PREV_TOKEN.type == OP_T && PREV_TOKEN.value.op == CLOSE_FUNC)
 
-            main_node->right = CreateOpNode (else_body, if_body, ELSE);
+            main_node->value.op = ELSE;
+            main_node->right = CreateOpNode (if_body, else_body, IF);
         }
         else main_node->right = if_body;
 
@@ -314,28 +314,9 @@ static Node* GetMult (Token* tokens, int* cur_token, ExitCodes* exit_code)
 {
     ASSERT_TOKENS_DATA
 
-    Node* main_node = GetPower (TOKENS_DATA);
-
-    while (CHECK_OP (MULT) || CHECK_OP (DIV))
-    {
-        KeyWords op = CUR_TOKEN_OP;
-        *cur_token += 1;
-
-        Node* sub_node = GetPower (TOKENS_DATA);
-
-        main_node = CreateOpNode (main_node, sub_node, op);
-    }
-
-    return main_node;
-}
-
-static Node* GetPower (Token* tokens, int* cur_token, ExitCodes* exit_code)
-{
-    ASSERT_TOKENS_DATA
-
     Node* main_node = GetUnary (TOKENS_DATA);
 
-    while (CHECK_OP (POW))
+    while (CHECK_OP (MULT) || CHECK_OP (DIV))
     {
         KeyWords op = CUR_TOKEN_OP;
         *cur_token += 1;
@@ -356,7 +337,7 @@ static Node* GetUnary (Token* tokens, int* cur_token, ExitCodes* exit_code)
     Node* main_node = GetBrackets (TOKENS_DATA);
 
     while (CUR_TOKEN_TYPE == OP_T &&
-          (CUR_TOKEN_OP == SIN || CUR_TOKEN_OP == COS || CUR_TOKEN_OP == LN))
+          (CUR_TOKEN_OP == SIN || CUR_TOKEN_OP == COS))
     {
         KeyWords op = CUR_TOKEN_OP;
 

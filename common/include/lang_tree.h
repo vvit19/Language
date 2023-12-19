@@ -47,8 +47,6 @@ enum KeyWords
     DIV,
     SIN,
     COS,
-    POW,
-    LN,
     OPEN_BRACKET,
     CLOSE_BRACKET,
     OPEN_FUNC,
@@ -60,11 +58,11 @@ enum KeyWords
 };
 
 const char* const LanguageSyntax[] = { "func", "var", "call", "return", "in", "out", "if",
-"else", "while", "==", "=", "!=", ">", "<", ">=", "<=", "+", "-", "*", "/", "sin", "cos", "^", "ln",
+"else", "while", "==", "=", "!=", ">", "<", ">=", "<=", "+", "-", "*", "/", "sin", "cos",
 "(", ")", "{", "}", ";", "end", "param", "," };
 
 const char* const OperationsArray[] = { "FUNC", "VAR", "CALL", "RET", "IN", "OUT", "IF", "ELSE", "WHILE", "ISEQ", "EQ",
-"NEQ", "BIGGER", "SMALLER", "BIGEQ", "SMALLEQ", "ADD", "SUB", "MULT", "DIV", "SIN", "COS", "POW", "LN", "OB", "CB", "OF",
+"NEQ", "BIGGER", "SMALLER", "BIGEQ", "SMALLEQ", "ADD", "SUB", "MULT", "DIV", "SIN", "COS", "OB", "CB", "OF",
 "CF", ";", "END", "PARAM", "," };
 
 union Value

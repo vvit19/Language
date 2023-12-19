@@ -1,7 +1,7 @@
 #include "backend.h"
 
 const char* const NIL = "NIL";
-const int NIL_LENGTH  = 3;
+const int  NIL_LENGTH = 3;
 
 static char* ReadNode (Node* node, char* buffer);
 
@@ -78,6 +78,9 @@ static char* ReadNode (Node* node, char* buffer)
             }
 
             cur_node = CreateVarNode (nullptr, nullptr, variable);
+
+            if (node->type == OP_T && (node->value.op == CALL || node->value.op == FUNC) && (!node->left)) cur_node->type = FUNC_NAME;
+
             break;
         }
     }

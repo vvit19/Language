@@ -1,10 +1,6 @@
 #ifndef DSL_H
 #define DSL_H
 
-#define NO_PROPER_CASE_FOUND \
-    fprintf (stderr, "Default case reached in file: %s, function: %s, line: %d\n", \
-                          __FILE__, __PRETTY_FUNCTION__, __LINE__)
-
 #define _NUM(val)    CreateNumNode (nullptr, nullptr, val)
 #define _VAR(var)    CreateVarNode (nullptr, nullptr, var)
 

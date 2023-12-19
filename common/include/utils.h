@@ -18,6 +18,10 @@ enum ExitCodes
     ERR
 };
 
+#define NO_PROPER_CASE_FOUND \
+    fprintf (stderr, "Default case reached in file: %s, function: %s, line: %d\n", \
+                          __FILE__, __PRETTY_FUNCTION__, __LINE__)
+
 #define SYNT_ASSERT(exit_code, ...) \
     if (!(__VA_ARGS__)) { \
         fprintf (stderr, "%s""Syntax assertion failed in file: %s:%d, function: %s\n" \

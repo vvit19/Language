@@ -57,11 +57,6 @@ static void GraphNodeDump (FILE* file, Node* node)
             "fillcolor=\"yellow\", label=\"cos\"] \n \n", node);
             break;
 
-        case LN:
-            _print ("Node%p[shape=rectangle, width=0.2, style=\"filled\","
-            "fillcolor=\"yellow\", label=\"ln\"] \n \n", node);
-            break;
-
         default:
             _print ("Node%p[shape=rectangle, width=0.2, style=\"filled\","
                     "fillcolor=\"yellow\", label=\"%s\"] \n \n",

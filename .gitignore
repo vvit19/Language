@@ -4,3 +4,11 @@ frontend/front
 backend/back
 backend/obj
 common/obj
+processor/asm/obj
+processor/cpu/obj
+processor/utils/obj
+processor/asm/run
+processor/spu/run
+a.out
+examples/*.bin
+examples/*.asm

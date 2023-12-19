@@ -8,10 +8,11 @@ int main (int argc, const char** argv)
         return -1;
     }
 
-    char* buffer = GetFileContent (argv[1]);
-
+    char* buffer = GetFileContent (TREE_TXT);
     Node* main_node = GetTree (buffer);
+    free (buffer);
+
+    GetAsmCode (argv[1], main_node);
 
     TreeDtor (main_node);
-    free (buffer);
 }

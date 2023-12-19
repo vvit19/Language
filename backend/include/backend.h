@@ -3,6 +3,9 @@
 
 #include "lang_tree.h"
 
+const char* const TREE_TXT = "../frontend/tree.txt";
+
 Node* GetTree  (char* buffer);
+void  GetAsmCode (const char* asm_file_name, Node* main_node);
 
 #endif

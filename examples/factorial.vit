@@ -5,6 +5,8 @@ func main ()
 
     var res = call factorial (n);
     out (res);
+
+    return 0;
 }
 
 func factorial (n)
@@ -14,7 +16,8 @@ func factorial (n)
         return 1;
     }
 
-    var res = call factorial (n - 1);
+    var sm = n - 1;
+    var res = call factorial (sm);
 
-    return res * n;
+    return n * res;
 }
