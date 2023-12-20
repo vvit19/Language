@@ -1,8 +1,12 @@
 #include "backend.h"
 
 #define GLOBAL_VAR_POS(var) GetVarPosition (var, info->global_names_table, info->global_names_num)
-
 #define VAR_POS(var) GetVarPosition (var, info->names_table, info->names_num)
+
+#define NODES_TO_ASM(...) \
+    NodeToAsm (file, node->left,  info); \
+    NodeToAsm (file, node->right, info); \
+    __VA_ARGS__;
 
 const int MAX_NAMES = 50;
 
@@ -20,6 +24,8 @@ static void NodeToAsm       (FILE* file, Node* node, AsmInfo* info);
 static int  GetVarPosition  (const char* var, char** names_array, int n_names);
 static void PushParams      (FILE* file, Node* node, AsmInfo* info);
 static void CountGlobalVars (Node* node, int* num);
+static void PushVar         (FILE* file, const char* var, AsmInfo* info);
+static void PopVar          (FILE* file, const char* var, AsmInfo* info);
 
 void GetAsmCode (const char* asm_file_name, Node* main_node)
 {
@@ -61,9 +67,7 @@ static void NodeToAsm (FILE* file, Node* node, AsmInfo* info)
 
     if (node->type == VAR_T)
     {
-        int position = GLOBAL_VAR_POS (node->value.var);
-        if (position >= 0) fprintf (file, "push [%d] \n", position);
-        else fprintf (file, "push [rax + %d] \n", VAR_POS (node->value.var));
+        PushVar (file, node->value.var, info);
     }
 
     if (node->type == FUNC_NAME)
@@ -129,10 +133,10 @@ static void NodeToAsm (FILE* file, Node* node, AsmInfo* info)
 
                 fprintf (file, "push rcx \n");
                 PushParams (file, node->right, info);
-                fprintf (file, "push rax + %d \n" "pop rax \n", info->names_num); // увеличиваю количество занятых ячеек оперативы
+                fprintf (file, "push rax + %d \n" "pop rax \n", info->names_num);
 
                 fprintf (file, "call %s \n" "pop rcx \n", node->left->value.var);
-                fprintf (file, "push rax\n" "push %d \nsub\n" "pop rax \n", info->names_num); // возвращаю кол-во ячеек оперативы
+                fprintf (file, "push rax\n" "push %d \nsub\n" "pop rax \n", info->names_num);
 
                 break;
             }
@@ -168,7 +172,7 @@ static void NodeToAsm (FILE* file, Node* node, AsmInfo* info)
                 NodeToAsm (file, node->left,  info);
                 NodeToAsm (file, node->right, info);
 
-                fprintf (file, "jump label_%d \n" "label_%d: \n", info->label_num, info->label_num);
+                NODES_TO_ASM (fprintf (file, "jump label_%d \n" "label_%d: \n", info->label_num, info->label_num));
 
                 info->label_num++;
 
@@ -231,119 +235,79 @@ static void NodeToAsm (FILE* file, Node* node, AsmInfo* info)
 
         case ISEQ:
             {
-                NodeToAsm (file, node->left,  info);
-                NodeToAsm (file, node->right, info);
-
-                fprintf (file, "jne label_%d \n", info->label_num);
-
+                NODES_TO_ASM (fprintf (file, "jne label_%d \n", info->label_num));
                 break;
             }
 
         case NEQ:
             {
-                NodeToAsm (file, node->left,  info);
-                NodeToAsm (file, node->right, info);
-
-                fprintf (file, "je label_%d \n", info->label_num);
+                NODES_TO_ASM (fprintf (file, "je label_%d \n", info->label_num));
                 break;
             }
 
         case BIGGER:
             {
-                NodeToAsm (file, node->left,  info);
-                NodeToAsm (file, node->right, info);
-
-                fprintf (file, "jae label_%d \n", info->label_num);
+                NODES_TO_ASM(fprintf (file, "jae label_%d \n", info->label_num));
                 break;
             }
 
         case SMALLER:
             {
-                NodeToAsm (file, node->left,  info);
-                NodeToAsm (file, node->right, info);
-
-                fprintf (file, "jbe label_%d \n", info->label_num);
+                NODES_TO_ASM(fprintf (file, "jbe label_%d \n", info->label_num));
                 break;
             }
 
         case BIGEQ:
             {
-                NodeToAsm (file, node->left,  info);
-                NodeToAsm (file, node->right, info);
-
-                fprintf (file, "ja label_%d \n", info->label_num);
+                NODES_TO_ASM (fprintf (file, "ja label_%d \n", info->label_num));
                 break;
             }
 
         case SMALLEQ:
             {
-                NodeToAsm (file, node->left,  info);
-                NodeToAsm (file, node->right, info);
-
-                fprintf (file, "jb label_%d \n", info->label_num);
+                NODES_TO_ASM (fprintf (file, "jb label_%d \n", info->label_num));
                 break;
             }
 
         case ADD:
             {
-                NodeToAsm (file, node->left,  info);
-                NodeToAsm (file, node->right, info);
-
-                fprintf (file, "add \n");
+                NODES_TO_ASM (fprintf (file, "add \n"));
                 break;
             }
 
         case SUB:
             {
-                NodeToAsm (file, node->left,  info);
-                NodeToAsm (file, node->right, info);
-
-                fprintf (file, "sub \n");
+                NODES_TO_ASM (fprintf (file, "sub \n"));
                 break;
             }
 
         case MULT:
             {
-                NodeToAsm (file, node->left,  info);
-                NodeToAsm (file, node->right, info);
-
-                fprintf (file, "mult \n");
+                NODES_TO_ASM (fprintf (file, "mult \n"));
                 break;
             }
 
         case DIV:
             {
-                NodeToAsm (file, node->left,  info);
-                NodeToAsm (file, node->right, info);
-
-                fprintf (file, "div \n");
+                NODES_TO_ASM (fprintf (file, "div \n"));
                 break;
             }
 
         case SIN:
             {
-                NodeToAsm (file, node->left,  info);
-                NodeToAsm (file, node->right, info);
-
-                fprintf (file, "sin \n");
+                NODES_TO_ASM (fprintf (file, "sin \n"));
                 break;
             }
 
         case COS:
             {
-                NodeToAsm (file, node->left,  info);
-                NodeToAsm (file, node->right, info);
-
-                fprintf (file, "cos \n");
+                NODES_TO_ASM (fprintf (file, "cos \n"));
                 break;
             }
 
         case SQRT:
             {
-                NodeToAsm (file, node->left,  info);
-                NodeToAsm (file, node->right, info);
-
-                fprintf (file, "sqrt \n");
+                NODES_TO_ASM (fprintf (file, "sqrt \n"));
                 break;
             }
 
@@ -356,10 +320,7 @@ static void NodeToAsm (FILE* file, Node* node, AsmInfo* info)
                 case IN:
                     {
                         fprintf (file, "in \n");
-                        position = GLOBAL_VAR_POS (node->left->value.var);
-
-                        if (position >= 0) fprintf (file, "pop [%d] \n", position);
-                        else fprintf (file, "pop [rax + %d] \n", VAR_POS (node->left->value.var));
+                        PopVar (file, node->left->value.var, info);
 
                         break;
                     }
@@ -372,10 +333,7 @@ static void NodeToAsm (FILE* file, Node* node, AsmInfo* info)
                             break;
                         }
 
-                        position = GLOBAL_VAR_POS (node->left->value.var);
-                        if (position >= 0) fprintf (file, "push [%d] \n", position);
-                        else fprintf (file, "push [rax + %d] \n", VAR_POS (node->left->value.var));
-
+                        PushVar (file, node->left->value.var, info);
                         fprintf (file, "out \n");
 
                         break;
@@ -392,10 +350,7 @@ static void NodeToAsm (FILE* file, Node* node, AsmInfo* info)
 
                 case RET:
                     {
-                        NodeToAsm (file, node->left,  info);
-                        NodeToAsm (file, node->right, info);
-
-                        fprintf (file, "pop rbx \n");
+                        NODES_TO_ASM (fprintf (file, "pop rbx \n"));
 
                         return;
                     }
@@ -445,4 +400,28 @@ static void CountGlobalVars (Node* node, int* num)
     {
         if (node->value.op == GL_VAR) *num += 1;
     }
+}
+
+static void PushVar (FILE* file, const char* var, AsmInfo* info)
+{
+    assert (file);
+    assert (var);
+    assert (info);
+
+    int position = GLOBAL_VAR_POS (var);
+
+    if (position >= 0) fprintf (file, "push [%d] \n", position);
+    else fprintf (file, "push [rax + %d] \n", VAR_POS (var));
+}
+
+static void PopVar (FILE* file, const char* var, AsmInfo* info)
+{
+    assert (file);
+    assert (var);
+    assert (info);
+
+    int position = GLOBAL_VAR_POS (var);
+
+    if (position >= 0) fprintf (file, "pop [%d] \n", position);
+    else fprintf (file, "pop [rax + %d] \n", VAR_POS (var));
 }
