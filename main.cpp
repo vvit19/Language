@@ -11,6 +11,9 @@ int main (int argc, char** argv)
              argv[1]);
     system  (command);
 
+    sprintf (command, "cd middleend && make && ./middle");
+    system  (command);
+
     sprintf (command, "cd backend && make && ./back ../examples/%s.asm",
              argv[1]);
     system  (command);

@@ -169,9 +169,6 @@ static void NodeToAsm (FILE* file, Node* node, AsmInfo* info)
 
         case IF:
             {
-                NodeToAsm (file, node->left,  info);
-                NodeToAsm (file, node->right, info);
-
                 NODES_TO_ASM (fprintf (file, "jump label_%d \n" "label_%d: \n", info->label_num, info->label_num));
 
                 info->label_num++;
@@ -313,8 +310,6 @@ static void NodeToAsm (FILE* file, Node* node, AsmInfo* info)
 
         case PARAM:
             {
-                int position = 0;
-
                 switch (info->prev_option)
                 {
                 case IN:
@@ -335,7 +330,6 @@ static void NodeToAsm (FILE* file, Node* node, AsmInfo* info)
 
                         PushVar (file, node->left->value.var, info);
                         fprintf (file, "out \n");
-
                         break;
                     }
 
