@@ -19,14 +19,14 @@ static Node* GetWhile       (Token* tokens, int* cur_token, ExitCodes* exit_code
 static Node* GetRet         (Token* tokens, int* cur_token, ExitCodes* exit_code);
 static Node* GetCall        (Token* tokens, int* cur_token, ExitCodes* exit_code);
 static Node* GetInOut       (Token* tokens, int* cur_token, ExitCodes* exit_code);
-static Node* GetArgs        (Token* tokens, int* cur_token, ExitCodes* exit_code); // foo (Args)
-static Node* GetExpression  (Token* tokens, int* cur_token, ExitCodes* exit_code); // =, ==, >, <, ...
-static Node* GetAddSub      (Token* tokens, int* cur_token, ExitCodes* exit_code); // +-
-static Node* GetMult        (Token* tokens, int* cur_token, ExitCodes* exit_code); // */
-static Node* GetUnary       (Token* tokens, int* cur_token, ExitCodes* exit_code); // unary: sin, cos, ln
-static Node* GetBrackets    (Token* tokens, int* cur_token, ExitCodes* exit_code); // ()
-static Node* GetVariable    (Token* tokens, int* cur_token, ExitCodes* exit_code); // variables
-static Node* GetNumber      (Token* tokens, int* cur_token, ExitCodes* exit_code); // numbers
+static Node* GetArgs        (Token* tokens, int* cur_token, ExitCodes* exit_code);
+static Node* GetExpression  (Token* tokens, int* cur_token, ExitCodes* exit_code);
+static Node* GetAddSub      (Token* tokens, int* cur_token, ExitCodes* exit_code);
+static Node* GetMult        (Token* tokens, int* cur_token, ExitCodes* exit_code);
+static Node* GetUnary       (Token* tokens, int* cur_token, ExitCodes* exit_code);
+static Node* GetBrackets    (Token* tokens, int* cur_token, ExitCodes* exit_code);
+static Node* GetVariable    (Token* tokens, int* cur_token, ExitCodes* exit_code);
+static Node* GetNumber      (Token* tokens, int* cur_token, ExitCodes* exit_code);
 
 Node* GetGrammar (char* buffer)
 {
@@ -252,7 +252,7 @@ static Node* GetArgs (Token* tokens, int* cur_token, ExitCodes* exit_code)
 {
     ASSERT_TOKENS_DATA
 
-    if (CHECK_OP (VAR))
+    if (CHECK_OP (VAR) || CHECK_OP (GL_VAR))
     {
         KeyWords op = CUR_TOKEN_OP;
         *cur_token += 1;
@@ -316,7 +316,7 @@ static Node* GetMult (Token* tokens, int* cur_token, ExitCodes* exit_code)
 
     Node* main_node = GetUnary (TOKENS_DATA);
 
-    while (CHECK_OP (MULT) || CHECK_OP (DIV))
+    while (CHECK_OP (MULT) || CHECK_OP (DIV) || CHECK_OP (SQRT))
     {
         KeyWords op = CUR_TOKEN_OP;
         *cur_token += 1;
@@ -483,9 +483,9 @@ static void AddVarToken (Token* tokens, int cur_token, char* buffer, int* i)
     tokens[cur_token].type = VAR_T;
     char variable[MAX_VAR_LENGTH] = "";
 
-    for (int k = 0; isalpha (buffer[*i]) || buffer[*i] == '_' || isdigit (buffer[*i]); *i += 1, k++)
+    for (int cnt = 0; isalpha (buffer[*i]) || buffer[*i] == '_' || isdigit (buffer[*i]); *i += 1, cnt++)
     {
-        variable[k] = buffer[*i];
+        variable[cnt] = buffer[*i];
     }
 
     strcpy (tokens[cur_token].value.var, variable);

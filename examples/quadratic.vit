@@ -1,0 +1,83 @@
+func main ()
+{
+    var a = 0;
+    var b = 0;
+    var c = 0;
+
+    gl_var x_1 = 0;
+    gl_var x_2 = 0;
+
+    in (a);
+    in (b);
+    in (c);
+
+    var n_roots = call solve_quadratic (a, b, c);
+
+    out (n_roots);
+
+    if (n_roots == 8)
+    {
+        return 0;
+    }
+
+    if (n_roots != 0)
+    {
+        out (x_1);
+    }
+
+    if (n_roots == 2)
+    {
+        out (x_2);
+    }
+
+    return 0;
+}
+
+func solve_quadratic (a, b, c)
+{
+    if (a == 0)
+    {
+        var n_roots = call solve_linear (b, c);
+
+        return n_roots;
+    }
+
+    var discr = b*b - 4*a*c;
+
+    if (discr < 0)
+    {
+        return 0;
+    }
+
+    x_1 = (0 - b + sqrt (discr)) / (2 * a);
+
+    if (discr == 0)
+    {
+        return 1;
+    }
+
+    x_2 = (0 - b - sqrt (discr)) / (2 * a);
+
+    return 2;
+}
+
+func solve_linear (a, b)
+{
+    if (a == 0)
+    {
+        if (b == 0)
+        {
+            return 8;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+    else
+    {
+        x_1 = (0 - b) / a;
+
+        return 1;
+    }
+}

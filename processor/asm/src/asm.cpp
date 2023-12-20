@@ -262,7 +262,7 @@ static void turn_into_bytecode(asm_config* asm_parameters)
 
     *asm_parameters->code++ = asm_parameters->masked_byte;
 
-    if (strcmp(asm_parameters->command, "push") == 0)
+    if (strcmp(asm_parameters->command, "push") == 0 || strcmp(asm_parameters->command, "pop") == 0)
     {
         if (asm_parameters->reg[0] == '\0')
         {
@@ -270,16 +270,6 @@ static void turn_into_bytecode(asm_config* asm_parameters)
             return;
         }
 
-        if (!is_equal(asm_parameters->value, VALUE_GARBAGE))
-        {
-            *asm_parameters->code++ = asm_parameters->reg_code;
-            memcpy((double*) asm_parameters->code, &asm_parameters->value, sizeof(double)); asm_parameters->code += sizeof(double);
-            return;
-        }
-    }
-
-    if (strcmp(asm_parameters->command, "pop") == 0)
-    {
         if (!is_equal(asm_parameters->value, VALUE_GARBAGE))
         {
             *asm_parameters->code++ = asm_parameters->reg_code;

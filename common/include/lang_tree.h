@@ -10,7 +10,7 @@
 #include <cstdarg>
 #include <cctype>
 
-const int MAX_VAR_LENGTH = 15;
+const int MAX_VAR_LENGTH = 25;
 
 typedef double elem_t;
 
@@ -27,6 +27,7 @@ enum KeyWords
 {
     FUNC,
     VAR,
+    GL_VAR,
     CALL,
     RET,
     IN,
@@ -47,6 +48,7 @@ enum KeyWords
     DIV,
     SIN,
     COS,
+    SQRT,
     OPEN_BRACKET,
     CLOSE_BRACKET,
     OPEN_FUNC,
@@ -57,13 +59,13 @@ enum KeyWords
     NEXT_PARAM
 };
 
-const char* const LanguageSyntax[] = { "func", "var", "call", "return", "in", "out", "if",
-"else", "while", "==", "=", "!=", ">", "<", ">=", "<=", "+", "-", "*", "/", "sin", "cos",
+const char* const LanguageSyntax[] = { "func", "var", "gl_var", "call", "return", "in", "out", "if",
+"else", "while", "==", "=", "!=", ">", "<", ">=", "<=", "+", "-", "*", "/", "sin", "cos", "sqrt",
 "(", ")", "{", "}", ";", "end", "param", "," };
 
-const char* const OperationsArray[] = { "FUNC", "VAR", "CALL", "RET", "IN", "OUT", "IF", "ELSE", "WHILE", "ISEQ", "EQ",
-"NEQ", "BIGGER", "SMALLER", "BIGEQ", "SMALLEQ", "ADD", "SUB", "MULT", "DIV", "SIN", "COS", "OB", "CB", "OF",
-"CF", ";", "END", "PARAM", "," };
+const char* const OperationsArray[] = { "FUNC", "VAR", "GL_VAR", "CALL", "RET", "IN", "OUT", "IF", "ELSE", "WHILE",
+"ISEQ", "EQ", "NEQ", "BIGGER", "SMALLER", "BIGEQ", "SMALLEQ", "ADD", "SUB", "MULT", "DIV", "SIN", "COS", "SQRT",
+"OB", "CB", "OF", "CF", ";", "END", "PARAM", "," };
 
 union Value
 {

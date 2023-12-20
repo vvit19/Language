@@ -16,8 +16,7 @@ func factorial (n)
         return 1;
     }
 
-    var sm = n - 1;
-    var res = call factorial (sm);
+    var res = call factorial (n - 1);
 
     return n * res;
 }

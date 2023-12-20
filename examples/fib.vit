@@ -1,0 +1,28 @@
+func main ()
+{
+    var n = 0;
+    in (n);
+
+    var res = call fib (n);
+    out (res);
+
+    return 0;
+}
+
+func fib (n)
+{
+    if (n == 1)
+    {
+        return 1;
+    }
+
+    if (n == 2)
+    {
+        return 1;
+    }
+
+    var res_1 = call fib (n - 1);
+    var res_2 = call fib (n - 2);
+
+    return res_1 + res_2;
+}
