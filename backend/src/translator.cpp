@@ -108,6 +108,7 @@ static void NodeToAsm (FILE* file, Node* node, AsmInfo* info)
                 NodeToAsm (file, node->right, info);
 
                 info->names_table[info->names_num] = node->left->value.var;
+                fprintf (file, "; initialize %s \n", node->left->value.var);
                 fprintf (file, "pop [rax + %d] \n", info->names_num);
 
                 info->names_num++;
@@ -120,6 +121,7 @@ static void NodeToAsm (FILE* file, Node* node, AsmInfo* info)
                 NodeToAsm (file, node->right, info);
 
                 info->global_names_table[info->global_names_num] = node->left->value.var;
+                fprintf (file, "; initialize %s \n", node->left->value.var);
                 fprintf (file, "pop [%d] \n", info->global_names_num);
 
                 info->global_names_num++;
@@ -146,7 +148,7 @@ static void NodeToAsm (FILE* file, Node* node, AsmInfo* info)
                 info->prev_option = RET;
                 NodeToAsm (file, node->left, info);
 
-                fprintf (file, "push rcx \n" "ret \n\n");
+                fprintf (file, "push rcx \n" "ret ; function end\n\n");
 
                 break;
             }
@@ -169,6 +171,7 @@ static void NodeToAsm (FILE* file, Node* node, AsmInfo* info)
 
         case IF:
             {
+                fprintf (file, "; if: \n");
                 NODES_TO_ASM (fprintf (file, "jump label_%d \n" "label_%d: \n", info->label_num, info->label_num));
 
                 info->label_num++;
@@ -182,11 +185,14 @@ static void NodeToAsm (FILE* file, Node* node, AsmInfo* info)
                 int else_label = info->label_num++;
 
                 NodeToAsm (file, node->right->left, info);
+                fprintf (file, "; if: \n");
                 fprintf (file, "jump label_%d \n", info->label_num);
                 int after_label = info->label_num++;
 
+                fprintf (file, "; else: \n");
                 fprintf (file, "label_%d: \n", else_label);
                 NodeToAsm (file, node->right->right, info);
+                fprintf (file, "; end if/else \n");
                 fprintf (file, "jump label_%d \n" "label_%d: \n", after_label, after_label);
 
                 break;
@@ -199,6 +205,7 @@ static void NodeToAsm (FILE* file, Node* node, AsmInfo* info)
                 int end_label   = info->label_num++;
                 int while_label = info->label_num;
 
+                fprintf (file, "; while \n");
                 fprintf (file, "jump label_%d \nlabel_%d: \n", while_label, while_label);
 
                 NodeToAsm (file, node->right, info);
@@ -221,6 +228,7 @@ static void NodeToAsm (FILE* file, Node* node, AsmInfo* info)
 
                 if (node->left && node->left->type == VAR_T)
                 {
+                    fprintf (file, "; new value of %s \n", node->left->value.var);
                     int position = GLOBAL_VAR_POS (node->left->value.var);
                     if (position >= 0) fprintf (file, "pop [%d] \n", position);
                     else fprintf (file, "pop [rax + %d] \n", VAR_POS (node->left->value.var));
