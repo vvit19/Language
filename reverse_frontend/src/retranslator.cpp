@@ -63,11 +63,11 @@ static void PrintNode (Node* node, FILE* file, int level, KeyWords prev_op)
             return;
         }
 
-        if (node->value.op == VAR)
+        if (node->value.op == VAR || node->value.op == GL_VAR)
         {
             PrintTabs (file, level);
 
-            fprintf (file, "var %s = ", node->left->value.var);
+            fprintf (file, "%s %s = ", LanguageSyntax[node->value.op], node->left->value.var);
 
             PrintNode (node->right->left, file, level, prev_op);
             PrintNode (node->right->right, file, level, prev_op);
@@ -106,18 +106,65 @@ static void PrintNode (Node* node, FILE* file, int level, KeyWords prev_op)
             return;
         }
 
-        if (node->value.op == IF || node->value.op == WHILE)
+        if (node->value.op == SQRT || node->value.op == SIN || node->value.op == COS)
+        {
+            fprintf (file, "%s (", LanguageSyntax[node->value.op]);
+            PrintNode (node->left,  file, level, prev_op);
+            PrintNode (node->right, file, level, prev_op);
+            fprintf (file, ")");
+
+            return;
+        }
+
+        if (node->value.op == IF || node->value.op == WHILE || node->value.op == ELSE)
         {
             PrintTabs (file, level);
 
-            fprintf (file, "%s (", LanguageSyntax[node->value.op]);
+            if (node->value.op == ELSE)
+            {
+                fprintf (file, "%s (", LanguageSyntax[node->right->value.op]);
+            }
+            else fprintf (file, "%s (", LanguageSyntax[node->value.op]);
+
             PrintNode (node->left, file, level, prev_op);
             fprintf (file, ")\n");
             PrintTabs (file, level);
             fprintf (file, "{\n");
-            PrintNode (node->right, file, level + 1, prev_op);
+
+            if (node->value.op == ELSE)
+            {
+                PrintNode (node->right->left, file, level + 1, prev_op);
+            }
+            else PrintNode (node->right, file, level + 1, prev_op);
+
             PrintTabs (file, level);
             fprintf (file, "}");
+
+            if (node->value.op == ELSE)
+            {
+                fprintf (file, "\n");
+                PrintTabs (file, level);
+
+                fprintf (file, "%s\n", LanguageSyntax[node->value.op]);
+                PrintTabs (file, level);
+                fprintf (file, "{\n");
+                PrintNode (node->right->right, file, level + 1, prev_op);
+                PrintTabs (file, level);
+                fprintf (file, "}");
+            }
+
+            return;
+        }
+
+        if (node->value.op == SUB || node->value.op == ADD || node->value.op == DIV || node->value.op == MULT)
+        {
+            fprintf (file, "(");
+            PrintNode (node->left, file, level, prev_op);
+            fprintf (file, ")");
+            fprintf (file, " %s ", LanguageSyntax[node->value.op]);
+            fprintf (file, "(");
+            PrintNode (node->right, file, level, prev_op);
+            fprintf (file, ")");
 
             return;
         }
