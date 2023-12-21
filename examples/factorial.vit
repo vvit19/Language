@@ -1,22 +1,22 @@
-func main ()
+энергос main ()
 {
-    var n = 0;
-    in (n);
+    пацан n = 0;
+    внутрь (n);
 
-    var res = call factorial (n);
-    out (res);
+    пацан res = позови factorial (n);
+    наружу (res);
 
-    return 0;
+    жрать 0;
 }
 
-func factorial (n)
+энергос factorial (n)
 {
-    if (n == 1)
+    если (n == 1)
     {
-        return 1;
+        жрать 1;
     }
 
-    var res = call factorial (n - 1);
+    пацан res = позови factorial (n - 1);
 
-    return n * res;
+    жрать n * res;
 }

@@ -59,8 +59,8 @@ enum KeyWords
     NEXT_PARAM
 };
 
-const char* const LanguageSyntax[] = { "func", "var", "gl_var", "call", "return", "in", "out", "if",
-"else", "while", "==", "=", "!=", ">", "<", ">=", "<=", "+", "-", "*", "/", "sin", "cos", "sqrt",
+const char* const LanguageSyntax[] = { "энергос", "пацан", "чушпан", "позови", "жрать", "внутрь", "наружу", "если",
+"иначе", "пока", "==", "=", "!=", ">", "<", ">=", "<=", "+", "-", "*", "/", "синус", "косинус", "корень",
 "(", ")", "{", "}", ";", "end", "param", "," };
 
 const char* const OperationsArray[] = { "FUNC", "VAR", "GL_VAR", "CALL", "RET", "IN", "OUT", "IF", "ELSE", "WHILE",
