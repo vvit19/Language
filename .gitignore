@@ -12,3 +12,5 @@ processor/spu/run
 a.out
 examples/*.bin
 examples/*.asm
+reverse_frontend/obj
+reverse_frontend/reverse

@@ -21,8 +21,18 @@ func fib (n)
         return 1;
     }
 
-    var res_1 = call fib (n - 1);
-    var res_2 = call fib (n - 2);
+    var f_1 = 1;
+    var f_2 = 1;
+    var fib = 0;
 
-    return res_1 + res_2;
+    var i = 0;
+    while (i < n - 2)
+    {
+        fib = f_1 + f_2;
+        f_1 = f_2;
+        f_2 = fib;
+        i = i + 1;
+    }
+
+    return fib;
 }

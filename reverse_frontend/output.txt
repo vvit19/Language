@@ -1,0 +1,17 @@
+func main ()
+{
+	var n = 0;
+	in (n);
+	var res = call factorial (n);
+	out (res);
+	return 0;
+};
+func factorial (n)
+{
+	if (n == 1)
+	{
+		return 1;
+	};
+	var res = call factorial (n - 1);
+	return n * res;
+};
