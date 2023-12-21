@@ -80,15 +80,6 @@ int OptimizeNeutrals (Node** parent, Node* node, bool* has_optimized)
 
         *has_optimized = true;
     }
-    else if (optimize_left == 0 && CUR_OP == SUB)
-    {
-        node->left->type = NUM_T;
-        node->left->value.num = -1;
-
-        CUR_OP = MULT;
-
-        *has_optimized = true;
-    }
     else if ((optimize_left == 0 && CUR_OP == ADD) || (optimize_left == 1 && CUR_OP == MULT))
     {
         if (node == *parent)
