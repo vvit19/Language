@@ -76,17 +76,22 @@ char* remove_empty_lines(char* buffer, int* line, int nlines)
     assert(buffer);
     assert(line);
 
-    while (*buffer == '\n' && *line < nlines)
+    while (isspace (*buffer))
     {
-        (*line)++;
-         buffer++;
-    }
+        while (*buffer == '\n' && *line < nlines)
+        {
+            (*line)++;
+            buffer++;
+        }
 
-    if (*buffer == ';')
-    {
-        while (*buffer != '\n') buffer++;
-        buffer++;
-        (*line)++;
+        while (isspace (*buffer)) buffer++;
+
+        if (*buffer == ';')
+        {
+            while (*buffer != '\n') buffer++;
+            buffer++;
+            (*line)++;
+        }
     }
 
 

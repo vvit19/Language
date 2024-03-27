@@ -1,83 +1,83 @@
-энергос main ()
+func main ()
 {
-    чушпан x_1 = 0;
-    чушпан x_2 = 0;
+    var a = 0;
+    var b = 0;
+    var c = 0;
 
-    пацан a = 0;
-    пацан b = 0;
-    пацан c = 0;
+    gl_var x_1 = 0;
+    gl_var x_2 = 0;
 
-    внутрь (a);
-    внутрь (b);
-    внутрь (c);
+    in (a);
+    in (b);
+    in (c);
 
-    пацан n_roots = позови solve_quadratic (a, b, c);
+    var n_roots = call solve_quadratic (a, b, c);
 
-    наружу (n_roots);
+    out (n_roots);
 
-    если (n_roots == 8)
+    if (n_roots == 8)
     {
-        жрать 0;
+        return 0;
     }
 
-    если (n_roots != 0)
+    if (n_roots != 0)
     {
-        наружу (x_1);
+        out (x_1);
     }
 
-    если (n_roots == 2)
+    if (n_roots == 2)
     {
-        наружу (x_2);
+        out (x_2);
     }
 
-    жрать 0;
+    return 0;
 }
 
-энергос solve_quadratic (a, b, c)
+func solve_quadratic (a, b, c)
 {
-    если (a == 0)
+    if (a == 0)
     {
-        пацан n_roots = позови solve_linear (b, c);
+        var n_roots = call solve_linear (b, c);
 
-        жрать n_roots;
+        return n_roots;
     }
 
-    пацан discr = b*b - 4*a*c;
+    var discr = b*b - 4*a*c;
 
-    если (discr < 0)
+    if (discr < 0)
     {
-        жрать 0;
+        return 0;
     }
 
-    x_1 = (0 - b + корень (discr)) / (2 * a);
+    x_1 = (0 - b + sqrt (discr)) / (2 * a);
 
-    если (discr == 0)
+    if (discr == 0)
     {
-        жрать 1;
+        return 1;
     }
 
-    x_2 = (0 - b - корень (discr)) / (2 * a);
+    x_2 = (0 - b - sqrt (discr)) / (2 * a);
 
-    жрать 2;
+    return 2;
 }
 
-энергос solve_linear (a, b)
+func solve_linear (a, b)
 {
-    если (a == 0)
+    if (a == 0)
     {
-        если (b == 0)
+        if (b == 0)
         {
-            жрать 8;
+            return 8;
         }
-        иначе
+        else
         {
-            жрать 0;
+            return 0;
         }
     }
-    иначе
+    else
     {
         x_1 = (0 - b) / a;
 
-        жрать 1;
+        return 1;
     }
 }

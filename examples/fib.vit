@@ -1,32 +1,32 @@
-энергос main ()
+func main ()
 {
-    пацан n = 0;
-    внутрь (n);
+    var n = 0;
+    in (n);
 
-    пацан res = позови fib (n);
-    наружу (res);
+    var res = call fib (n);
+    out (res);
 
-    жрать 0;
+    return 0;
 }
 
-энергос fib (n)
+func fib (n)
 {
-    если (n == 1)
+    if (n == 1)
     {
-        жрать 1;
+        return 1;
     }
 
-    если (n == 2)
+    if (n == 2)
     {
-        жрать 1;
+        return 1;
     }
 
-    пацан f_1 = 1;
-    пацан f_2 = 1;
-    пацан fib = 0;
+    var f_1 = 1;
+    var f_2 = 1;
+    var fib = 0;
 
-    пацан i = 0;
-    пока (i < n - 2)
+    var i = 0;
+    while (i < n - 2)
     {
         fib = f_1 + f_2;
         f_1 = f_2;
@@ -34,5 +34,5 @@
         i = i + 1;
     }
 
-    жрать fib;
+    return fib;
 }
