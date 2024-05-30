@@ -1,7 +1,7 @@
 # Programming language
 
 ## Overview
-This project is an implementation of my own programming language. Code on my language is translated into code in my own assembler, whis is executed on [my virtual spu](https://github.com/vvit19/Processor).
+This project is an implementation of my own programming language. Code on my language is translated into code on my own assembler, whis is executed on [my virtual spu](https://github.com/vvit19/Processor).
 
 ## Compiling process
 ### 1) Frontend
